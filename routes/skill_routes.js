@@ -1,0 +1,39 @@
+/**
+ * Created by jtpal on 11/10/2016.
+ */
+var express = require('express');
+var router = express.Router();
+var skill_dal = require('../model/skill_dal');
+
+
+// View All schools
+router.get('/all', function(req, res) {
+    skill_dal.getAll(function(err, result){
+        if(err) {
+            res.send(err);
+        }
+        else {
+            res.render('skill/skillViewAll', { 'result':result });
+        }
+    });
+
+});
+
+// View the skill for the given id
+router.get('/', function(req, res){
+    if(req.query.skill_id == null) {
+        res.send('kill_id is null');
+    }
+    else {
+        skill_dal.getById(req.query.skill_id, function(err,result) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.render('skill/skillViewById', {'result': result});
+            }
+        });
+    }
+});
+
+module.exports = router;
