@@ -14,7 +14,7 @@ exports.getAll = function(callback) {
         callback(err, result);
     });
 };
-/*
+
 exports.getById = function(address_id, callback) {
     var query = 'SELECT * FROM address WHERE address_id = ?';
     var queryData = [address_id];
@@ -23,4 +23,3 @@ exports.getById = function(address_id, callback) {
         callback(err, result);
     });
 };
-*/

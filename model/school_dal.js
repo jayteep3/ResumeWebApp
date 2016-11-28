@@ -25,7 +25,7 @@ exports.insert = function(params, callback){
 
     var query = 'INSERT INTO school (school_name, address_id) VALUES (?,?)';
 
-    var queryDta = [params.school_name, params.address_id];
+    var queryData = [params.school_name, params.address_id];
 
     connection.query(query, queryData, function(err, result){
         callback(err,result);

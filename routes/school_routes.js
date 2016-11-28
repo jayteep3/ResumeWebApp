@@ -49,7 +49,7 @@ router.get('/insert', function(req, res) {
         res.send('School Name must be provided.');
 
     }
-    else if (rq.query.address_id == null) {
+    else if (req.query.address_id == null) {
         res.send('Ann Address must be selected');
     }
     else{
