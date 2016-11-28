@@ -11,7 +11,7 @@
     Account
     <select id="account_id" name="account_id">
         <% for(var i=0; account.length > i; i++ ) { %>
-        <option value="<%= account[i].account_id %>"><%= account[i].street + ', ' + address[i].zip_code %></option>
+        <option value="<%= account[i].account_id %>"><%= account[i].first_name + ' ' + account[i].last_name%></option>
         <% } %>
     </select>
 

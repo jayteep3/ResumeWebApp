@@ -37,7 +37,7 @@ router.get('/', function(req, res){
     }
 });
 
-//return the add a new school form
+//return the add a new resume form
 router.get('/add', function(req, res){
     account_dal.getAll(function(err,result) {
         if (err) {
@@ -53,7 +53,7 @@ router.get('/insert', function(req, res) {
         res.send('Resume Name must be provided.');
 
     }
-    else if (req.query.address_id == null) {
+    else if (req.query.account_id == null) {
         res.send('An Acount name must be selected');
     }
     else{
@@ -68,9 +68,9 @@ router.get('/insert', function(req, res) {
     }
 });
 
-//Delete a school for given ID
+//Delete a resume for given ID
 router.get('/delete', function(req,res) {
-    if(req.query._id == null) {
+    if(req.query.resume_id == null) {
         res.send('resume_id is null');
     }
     else {
