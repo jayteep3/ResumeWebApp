@@ -8,7 +8,7 @@
 <br />
 
 <table border="1">
-    <tr><th>Street</th><th>ZIP code</th></tr>
+    <tr><th>Street</th><th>ZIP code</th><th>Action</th></tr>
     <% for(var i=0; result.length > i; i++ ) { %>
     <tr>
         <td><a href="/address/?address_id=<%= result[i].address_id %>"><%= result[i].street %> </a></td>
