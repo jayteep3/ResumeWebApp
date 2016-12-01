@@ -29,7 +29,7 @@ exports.insert = function(params, callback){
 
     var query = 'INSERT INTO resume (user_account_id, resume_name) VALUES (?,?)';
 
-    var queryData = [params.user_account_id, params.resume_name];
+    var queryData = [params.account_id, params.resume_name];
 
     connection.query(query, queryData, function(err, result){
         callback(err,result);
