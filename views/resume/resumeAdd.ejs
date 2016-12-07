@@ -8,7 +8,7 @@
     Resume Name: <input id="resume_name" name="resume_name" type="text" />
     <br />
     <br />
-    Account
+    Account:
     <select id="account_id" name="account_id">
         <% for(var i=0; account.length > i; i++ ) { %>
         <option value="<%= account[i].account_id %>"><%= account[i].first_name + ' ' + account[i].last_name%></option>
@@ -25,7 +25,7 @@
     Company:
     <select id="company_id" name="company_id" multiple="multiple">
         <% for(var i=0; company.length > i; i++ ) { %>
-        <option value="<%= compnay[i].company_id %>"><%= company[i].company_name%></option>
+        <option value="<%= company[i].company_id %>"><%= company[i].company_name%></option>
         <% } %>
     </select>
     <br>

@@ -8,7 +8,7 @@ var db  = require('./db_connection.js');
 var connection = mysql.createConnection(db.config);
 
 exports.getAll = function(callback) {
-    var query = 'SELECT * FROM account_view;';
+    var query = 'SELECT * FROM account_view';
 
     connection.query(query, function(err, result) {
         callback(err, result);
@@ -27,7 +27,7 @@ exports.getById = function(resume_id, callback) {
 
 exports.insert = function(params, callback) {
 
-    var query = 'INSERT INTO resume (user_account_id, resume_name) VALUES (?,?)';
+    var query = 'INSERT INTO resume (user_account_id, resume_name) VALUES (?,?);'
 
     var queryData = [params.account_id, params.resume_name];
 
@@ -35,15 +35,29 @@ exports.insert = function(params, callback) {
 
         var resume_id = result.insertID;
 
-        var query = 'INSERT INTO (resume_id, account_id) VALUES ?';
-
-        var resumeAccountData = [];
-
-        for (var i = 0; i < params.account_id.length; i++) {
-            resumeAccountData.push([resume_id, params.account_id[i]]);
+        var query = 'INSERT INTO resume_skill(resume_id, skill_id) VALUES ?;'
+        var queryData = [];
+        for (var i = 0; i < params.skill_id.length; i++) {
+            queryData.push([resume_id, params.skill_id[i]]);
         }
-        connection.query(query, [resumeAccountData], function (err, result) {
-            callback(err, result);
+        connection.query(query, [queryData], function (err, result) {
+            var query = 'INSERT INTO resume_school (resume_id,school_id) VALUES ?;'
+            var queryData = [];
+            for (var i = 0; i < params.school_id.length; i++) {
+                queryData.push([resume_id, params.school_id[i]]);
+            }
+
+            connection.query(query, [queryData], function (err, result) {
+                var query = 'INSERT INTO resume_company (resume_id,company_id) VALUES ?;'
+                var queryData = [];
+                for (var i = 0; i < params.company_id.length; i++) {
+                    queryData.push([resume_id, params.company_id[i]]);
+                }
+
+                connection.query(query, [queryData], function (err, result) {
+                    callback(err, result);
+                });
+            });
         });
     });
 };
