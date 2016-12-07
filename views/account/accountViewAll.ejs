@@ -1,8 +1,4 @@
-<html>
-<head>
-    <title>Accounts</title>
-</head>
-<body>
+<%- include("../includes/header.ejs", {title:"Account - View All"}); %>
 <h1>Accounts</h1>
 <a href="/account/add">Add New Account</a> <br />
 <br />
@@ -15,7 +11,7 @@
         <td><%= result[i].email %></td>
 
         <td>
-            <button onclick="event.preventDefault();window.location.href='/account/edit/account_id=<%= result[i].account_id %> '">Edit</button>
+            <button onclick="event.preventDefault();window.location.href='/account/edit/?account_id=<%= result[i].account_id %> '">Edit</button>
             <form action="/account/delete/">
                 <input type="hidden" name="account_id" id="account_id" value="<%= result[i].account_id %>" />
                 <input type="submit" value="Delete"/>
@@ -27,7 +23,4 @@
 </table>
 <br/>
 <a href="/">Home</a><br/>
-<br />
-</body>
-
-</html>
+<%- include("../includes/footer.ejs"); %>
