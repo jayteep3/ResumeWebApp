@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%=title%></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+<%- include("./includes/header.ejs", {title: title}); %>
     <h1><%=title%></h1>
     <p>Welcome to <%=title%> </p>
 
@@ -17,5 +11,4 @@
 
     <br />
 
-  </body>
-</html>
+<%- include("./includes/footer.ejs"); %>
