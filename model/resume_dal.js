@@ -27,28 +27,28 @@ exports.getById = function(resume_id, callback) {
 
 exports.insert = function(params, callback) {
 
-    var query = 'INSERT INTO resume (user_account_id, resume_name) VALUES (?,?);'
+    var query = 'INSERT INTO resume (user_account_id, resume_name) VALUES (?,?)';
 
     var queryData = [params.account_id, params.resume_name];
 
     connection.query(query, queryData, function (err, result) {
 
-        var resume_id = result.insertID;
+        var resume_id = result.insertId;
 
-        var query = 'INSERT INTO resume_skill(resume_id, skill_id) VALUES ?;'
+        var query = 'INSERT INTO resume_skill(resume_id, skill_id) VALUES ?';
         var queryData = [];
         for (var i = 0; i < params.skill_id.length; i++) {
             queryData.push([resume_id, params.skill_id[i]]);
         }
         connection.query(query, [queryData], function (err, result) {
-            var query = 'INSERT INTO resume_school (resume_id,school_id) VALUES ?;'
+            var query = 'INSERT INTO resume_school (resume_id,school_id) VALUES ?';
             var queryData = [];
             for (var i = 0; i < params.school_id.length; i++) {
                 queryData.push([resume_id, params.school_id[i]]);
             }
 
             connection.query(query, [queryData], function (err, result) {
-                var query = 'INSERT INTO resume_company (resume_id,company_id) VALUES ?;'
+                var query = 'INSERT INTO resume_company (resume_id,company_id) VALUES ?';
                 var queryData = [];
                 for (var i = 0; i < params.company_id.length; i++) {
                     queryData.push([resume_id, params.company_id[i]]);

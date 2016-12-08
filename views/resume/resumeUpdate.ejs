@@ -6,7 +6,8 @@
     Resume Name: <input id="resume_name" name="resume_name" type="text" value="<%= resume.resume_name%>"/>
     <br />
     <br />
-    Skill: <br />
+    Skill:
+    <br />
     <select id="skill_id" name="skill_id" multiple="multiple">
         <% for(var i=0; skill.length > i; i++ ) {
             var selected = "";
@@ -17,6 +18,30 @@
         <option value="<%= skill[i].skill_id %>" <%= selected %> ><%= skill[i].skill_name + ', ' + skill[i].description %></option>
         <% } %>
     </select>
+    Company:
+    <br />
+    <select id="company_id" name="company_id" multiple="multiple">
+        <% for(var i=0; company.length > i; i++ ) {
+            var selected = "";
+            if(company[i].company_id != null) {
+                selected = "selected";
+            }
+        %>
+        <option value="<%= company[i].company_id %>" <%= selected %> ><%= company[i].company_name %></option>
+        <% } %>
+    </select>
+    School:
+    <br />
+    <select id="school_id" name="school_id" multiple="multiple">
+        <% for(var i=0; school.length > i; i++ ) {
+            var selected = "";
+            if(school[i].school_id != null) {
+                selected= "selected";
+            }
+        %>
+        <option value="<%= school[i].school_id %>" <%= selected %> ><%= school[i].school_name + ', ' + school[i].address_id %></option>
+        <% } %>
+    </select>
 
     <!-- Initialize the multiselect plugin: -->
 
@@ -25,6 +50,7 @@
             $('#skill_id').multiselect();
             $('#company_id').multiselect();
             $('#school_id').multiselect();
+        });
     </script>
     <br />
 
