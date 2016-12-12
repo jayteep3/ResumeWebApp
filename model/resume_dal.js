@@ -18,11 +18,41 @@ exports.getAll = function(callback) {
 exports.getById = function(resume_id, callback) {
     var query = 'SELECT * FROM account_view WHERE resume_id = ?';
     var queryData = [resume_id];
+    connection.query(query, queryData, function(err, resume) {
+        resumeSkillViewById(resume_id, function (err, resume_skill) {
+            resumeCompanyViewById(resume_id, function(err, resume_company) {
+                resumeSchoolViewById(resume_id, function(err, resume_school) {
+                    callback(err, resume, resume_skill, resume_company, resume_school);
+                });
+            });
+        });
+    });
+};
 
-    connection.query(query, queryData, function(err, result) {
+var resumeSkillViewById = function(resume_id, callback){
+    var query = 'SELECT * FROM resumeSkill_viewById WHERE resume_id = ?';
+    connection.query(query, resume_id, function (err, result) {
         callback(err, result);
     });
 };
+module.exports.resumeSkillViewById = resumeSkillViewById;
+
+var resumeCompanyViewById = function(resume_id, callback){
+    var query = 'SELECT * FROM resumeCompany_viewById WHERE resume_id = ?';
+    connection.query(query, resume_id, function (err, result) {
+        callback(err, result);
+    });
+};
+module.exports.resumeCompanyViewById = resumeCompanyViewById;
+
+var resumeSchoolViewById = function(resume_id, callback){
+    var query = 'SELECT * FROM resumeSchool_viewById WHERE resume_id = ?';
+    connection.query(query, resume_id, function (err, result) {
+        callback(err, result);
+    });
+};
+module.exports.resumeSchoolViewById = resumeSchoolViewById;
+
 
 
 exports.insert = function(params, callback) {

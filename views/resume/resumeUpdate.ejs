@@ -18,6 +18,8 @@
         <option value="<%= skill[i].skill_id %>" <%= selected %> ><%= skill[i].skill_name + ', ' + skill[i].description %></option>
         <% } %>
     </select>
+    <br/>
+    <br/>
     Company:
     <br />
     <select id="company_id" name="company_id" multiple="multiple">
@@ -30,6 +32,8 @@
         <option value="<%= company[i].company_id %>" <%= selected %> ><%= company[i].company_name %></option>
         <% } %>
     </select>
+    <br/>
+    <br/>
     School:
     <br />
     <select id="school_id" name="school_id" multiple="multiple">
@@ -42,6 +46,7 @@
         <option value="<%= school[i].school_id %>" <%= selected %> ><%= school[i].school_name + ', ' + school[i].address_id %></option>
         <% } %>
     </select>
+    <br/>
 
     <!-- Initialize the multiselect plugin: -->
 
